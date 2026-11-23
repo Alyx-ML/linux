@@ -101,5 +101,5 @@ jobs:
             drivers/power/ \
             drivers/soc/apple/ \
             drivers/thunderbolt/ \
-            fs/splice.o kernel/sys.o mm/ksm.o mm/madvise.o mm/vma_exec.o
+            drivers/pci/probe.o fs/splice.o kernel/sys.o mm/ksm.o mm/madvise.o mm/vma_exec.o
 
