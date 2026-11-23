@@ -1,0 +1,18 @@
+name: Extra host tests
+
+on:
+  push:
+    branches: ['ci/**']
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: test_touchid_setup.py
+        run: python3 -m unittest discover -s tools/aurora-sep/tests -p test_touchid_setup.py -v
