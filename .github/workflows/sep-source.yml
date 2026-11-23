@@ -1,6 +1,8 @@
 name: SEP source checks
 
 on:
+  push:
+    branches: ['ci/**']
   pull_request:
     paths:
       - 'Makefile'
