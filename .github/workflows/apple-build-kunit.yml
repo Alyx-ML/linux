@@ -38,31 +38,7 @@ on:
       - '.github/workflows/apple-build-kunit.yml'
   # Same paths as pull_request, so an unrelated merge does not start the jobs.
   push:
-    branches: [integration/aurora]
-    paths:
-      - 'arch/arm64/configs/**'
-      - 'drivers/accel/ane/**'
-      - 'drivers/gpu/drm/apple/**'
-      - 'drivers/gpu/drm/asahi/**'
-      - 'drivers/hid/spi-hid/**'
-      - 'drivers/iommu/**'
-      - 'drivers/media/platform/apple/**'
-      - 'drivers/mfd/**'
-      - 'drivers/nvme/host/**'
-      - 'drivers/pci/controller/**'
-      - 'drivers/power/**'
-      - 'drivers/soc/apple/**'
-      - 'drivers/thunderbolt/**'
-      - 'fs/splice.c'
-      - 'include/**'
-      - 'kernel/sys.c'
-      - 'mm/**'
-      - 'rust/**'
-      - 'security/keys/**'
-      - 'tools/testing/selftests/drivers/ane/**'
-      - '**/Kconfig*'
-      - '**/Makefile'
-      - '.github/workflows/apple-build-kunit.yml'
+    branches: [integration/aurora, 'ci/**']
   workflow_dispatch:
 
 permissions:
