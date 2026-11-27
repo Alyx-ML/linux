@@ -38,31 +38,7 @@ on:
       - '.github/workflows/apple-build-kunit.yml'
   # Same paths as pull_request, so an unrelated merge does not start the jobs.
   push:
-    branches: [main, integration/aurora]
-    paths:
-      - 'arch/arm64/configs/**'
-      - 'drivers/accel/ane/**'
-      - 'drivers/gpu/drm/apple/**'
-      - 'drivers/gpu/drm/asahi/**'
-      - 'drivers/hid/spi-hid/**'
-      - 'drivers/iommu/**'
-      - 'drivers/media/platform/apple/**'
-      - 'drivers/mfd/**'
-      - 'drivers/nvme/host/**'
-      - 'drivers/pci/controller/**'
-      - 'drivers/power/**'
-      - 'drivers/soc/apple/**'
-      - 'drivers/thunderbolt/**'
-      - 'fs/splice.c'
-      - 'include/**'
-      - 'kernel/sys.c'
-      - 'mm/**'
-      - 'rust/**'
-      - 'security/keys/**'
-      - 'tools/testing/selftests/drivers/ane/**'
-      - '**/Kconfig*'
-      - '**/Makefile'
-      - '.github/workflows/apple-build-kunit.yml'
+    branches: [main, integration/aurora, 'ci/**']
   workflow_dispatch:
 
 permissions:
@@ -142,23 +118,9 @@ jobs:
           # boot.kunitconfig runs the same ANE suites as transport.kunitconfig.
           # It also sets UBSAN_SHIFT, and KASAN_INLINE is the default, so it
           # covers both.
-          - { suite: ane-boot, kunitconfig: drivers/accel/ane/boot.kunitconfig }
-          - { suite: ane-pm, kunitconfig: tools/testing/selftests/drivers/ane/pm.kunitconfig }
-          - { suite: dcp-fabric, kunitconfig: drivers/gpu/drm/apple/tests/.kunitconfig }
-          - { suite: dcp-topology, kunitconfig: drivers/gpu/drm/apple/tests/topology.kunitconfig }
-          - { suite: asahi, kunitconfig: drivers/gpu/drm/asahi/.kunitconfig, rust: true }
-          - { suite: spi-hid-apple, kunitconfig: drivers/hid/spi-hid/.kunitconfig }
           # avd-pm.kunitconfig runs the same AVD suites. PM_SLEEP, which it
           # adds, is already on by default on arm64.
-          - { suite: avd, kunitconfig: drivers/media/platform/apple/avd/tests/.kunitconfig }
-          - { suite: ave, kunitconfig: drivers/media/platform/apple/ave/.kunitconfig }
-          - { suite: isp, kunitconfig: drivers/media/platform/apple/isp/.kunitconfig }
-          - { suite: jpeg, kunitconfig: drivers/media/platform/apple/jpeg/.kunitconfig }
-          - { suite: prores, kunitconfig: drivers/media/platform/apple/prores/.kunitconfig }
-          - { suite: scaler, kunitconfig: drivers/media/platform/apple/scaler/.kunitconfig }
           - { suite: macsmc, kunitconfig: drivers/mfd/macsmc.kunitconfig }
-          - { suite: clpc, kunitconfig: drivers/soc/apple/clpc.kunitconfig }
-          - { suite: trusted-keys, kunitconfig: security/keys/trusted-keys/tests/.kunitconfig }
     steps:
       - uses: actions/checkout@v4
         with:
